@@ -20,3 +20,8 @@ h1{
     color: red;
     background-color: blue;
 }
+
+/* Bouton "Suivant */
+.hidden{
+	display: none;
+}
