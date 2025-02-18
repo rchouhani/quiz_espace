@@ -1,6 +1,9 @@
 export const quiz_espace = {
     questions: [
       {
+        intro: "bonjour les gens"
+      },
+      {
         text: "Combien de planètes y a t'il dans le système solaire ? ",
         options: [
           "1. 6",
