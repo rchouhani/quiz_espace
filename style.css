@@ -1,0 +1,22 @@
+h1{
+    text-align: center;
+    color:red;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}
+.flex-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.question{
+    display: flex;
+    flex-direction: column;
+}
+.rouge{
+    color: red;
+    background-color: blue;
+}
