@@ -22,8 +22,9 @@ quizEspaceElement.appendChild(newParagraph);
 const boutonStart = document.querySelector("#start-button");
 // bouton "Suivant"
 const boutonSuivant = document.querySelector("#next-button");
-
 console.log(boutonSuivant);
+
+let correctAnswer = quiz_espace.questions.correct_answer
 
 let textIndex = 0;
 // let optionsIndex = 0;
@@ -43,18 +44,22 @@ boutonStart.addEventListener("click", function () {
     boutonOptions.classList.add("boutonOptionsCSS"); // on ajoute la classe "boutonOptionsCSS" à tous les boutons "option"
 
     choixOptions.appendChild(boutonOptions);
-    return;
+    return boutonOptions;
     //addEventListener pour enregistrer la valeur checker
   });
   boutonStart.classList.add("hidden");
-
   boutonSuivant.classList.remove("hidden"); // faire apparaitre le bouton "suivant"
 });
 
+
+choixOptions.addEventListener("click", function () {
+  checkAnswer(choixOptions, correctAnswer);
+});
+
 /* Gestion réponses */
-let correctAnswer = quiz_espace.questions.correct_answer
+
 function checkAnswer(choixOptions, correctAnswer) {
-    if (choixOptions == correctAnswer) {
+    if (choixOptions === correctAnswer) {
       console.log("🐸 gagné !", correctAnswer);
       choixOptions.classList.add(".right");
     } else {
@@ -62,7 +67,3 @@ function checkAnswer(choixOptions, correctAnswer) {
       choixOptions.classList.add(".wrong");
     }
   }
-
-  boutonOptions.addEventListener("click", function () {
-    checkAnswer(choixOptions, correctAnswer);
-});
