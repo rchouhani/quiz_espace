@@ -32,24 +32,3 @@ boutonStart.addEventListener("click", function(){
         quizEspaceElement.appendChild(newButton)
     }
 })
-
-
-<<<<<<< HEAD
-    quizEspaceElement.appendChild(newButton)
-}
-=======
-
-
-
-
-
-
-
-
-
-
-// for (const item of quiz_espace.questions){
-//     console.log("hello", item.intro)
-// }
-
->>>>>>> 2c5e2418b286c73bdbe3ca037390f8b972d16561
