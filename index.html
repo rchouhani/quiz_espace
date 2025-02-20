@@ -8,20 +8,26 @@
 </head>
 <body>
 	<h1>🚀 Vers l'infini et au-delà 🌠</h1>
-	<div class="flex-column" id="quiz-container">
-	 
-	  <div class="question rouge" id="question-text">
+	<!-- <p id="intro"></p> -->
+
+	
+	<div id="quiz-container">
+		<p id="intro"></p>
+	  <div class="question" id="question-text">
 		<!-- La question sera injectée ici par JavaScript -->
 	  </div>
   
 	  
-	  <div class="options" id="options-container">
+	  <div class="options flex-column" id="options-container">
 		<!-- Les options seront injectées ici par JavaScript -->
 	  </div>
   
+	  <div class="button-container">
+		<button id="start-button">Let's go!</button>
+	  </div>
 	 
 	  <div class="button-container">
-		<button id="next-button">Suivant</button>
+		<button id="next-button" class="hidden">Suivant</button>
 	  </div>
 	</div>
 	
