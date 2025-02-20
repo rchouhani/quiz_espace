@@ -64,7 +64,11 @@ boutonStart.addEventListener("click", function () {
     boutonOptions.classList.add("boutonOptionsCSS"); // on ajoute la classe "boutonOptionsCSS" à tous les boutons "option"
 
     choixOptions.appendChild(boutonOptions);
+<<<<<<< HEAD
     return boutonOptions;
+=======
+    // return;
+>>>>>>> 8dfbdeb (version Eva)
     //addEventListener pour enregistrer la valeur checker
   });
   boutonStart.classList.add("hidden");
