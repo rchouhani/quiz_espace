@@ -37,7 +37,14 @@ h1{
     background-color: blue;
 }
 
-/* Bouton "Suivant */
+/* Bouton "Suivant" */
+#next-button{
+    margin: 20px 0 0 10px;
+    padding : 2px;
+    font-size: 1.25em;
+    background-color:bisque;
+    width: 20%;
+}
 .hidden{
 	display: none;
 }
@@ -45,16 +52,6 @@ h1{
 .boutonOptionsCSS{
     margin : 10px;
     padding : 5px;
-    background-color: aquamarine;
+    background-color:cadetblue;
     color : rgb(36, 36, 148);
 };
-.wrong{
-    border: 1px solid red;
-};
-.right{
-    border: 1px solid green;
-<<<<<<< HEAD
-};
-=======
-};
->>>>>>> 3734710e29db2a1e0308926184dbf4c17e167282
