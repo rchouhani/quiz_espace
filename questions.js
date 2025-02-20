@@ -19,7 +19,7 @@ export const quiz_espace = {
             "3. Océanie",
             "4. Asie"
           ],
-          correct_answer: "Europe"
+          correct_answer: "1. Europe"
         },
         {
           text: "Quelle est la durée moyenne d'une rotation complète de la Terre sur son axe ?",
@@ -29,7 +29,7 @@ export const quiz_espace = {
             "3. 1 heure",
             "4. Le temps que le mari décide de vider le lave-vaisselle"
           ],
-          correct_answer: "24 heures"
+          correct_answer: "2. 24 heures"
         },
         {
           text: "Dans quelle galaxie se situe le système solaire ?",
@@ -39,7 +39,7 @@ export const quiz_espace = {
             "3. Galaxie de la roue de Chariot",
             "4. La Voie Lactée"
           ],
-          correct_answer: "La Voie Lactée"
+          correct_answer: "4. La Voie Lactée"
         }
       ]
     };
