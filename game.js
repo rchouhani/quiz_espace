@@ -24,16 +24,6 @@ const boutonStart = document.querySelector("#start-button");
 const boutonSuivant = document.querySelector("#next-button");
 console.log(boutonSuivant);
 
-
-    
-        const newButton = document.createElement('button')
-        newButton.innerText = item.text
-        newButton.style.color = 'blue'
-        newButton.style.fontSize = '20px'
-    
-        quizEspaceElement.appendChild(newButton)
-//let correctAnswer = quiz_espace.questions.correct_answer; // pas bon
-
 let textIndex = 0; 
 // let optionsIndex = 0;
 
