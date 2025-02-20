@@ -30,10 +30,9 @@ let textIndex = 0;
 
 // affichage de la première question & de ses options
 boutonStart.addEventListener("click", function () {
-  const firstQuestion = document.querySelector("#question-text");
-  firstQuestion.innerText = quiz_espace.questions[textIndex].text;
+  const askedQuestion = document.querySelector("#question-text");
+  askedQuestion.innerText = quiz_espace.questions[textIndex].text;
   console.log("options", quiz_espace.questions[textIndex].options);
-
 
   // Pour chaque option, créer un bouton et l'ajouter au conteneur
   quiz_espace.questions[textIndex].options.forEach((option) => {
@@ -45,7 +44,6 @@ boutonStart.addEventListener("click", function () {
 
     choixOptions.appendChild(boutonOptions);
     // return;
-    //addEventListener pour enregistrer la valeur checker
   });
   boutonStart.classList.add("hidden");
   boutonSuivant.classList.remove("hidden"); // faire apparaitre le bouton "suivant"
@@ -79,3 +77,28 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
         // buttonClicked.classList.add("wrong");
       }
   }
+
+
+// FONCTION LOAD NEXT QUESTION
+  // affichage des questions suivantes au clic du bouton "Suivant" (code copié de bouton start)
+  boutonSuivant.addEventListener("click", function () {
+  choixOptions.innerHTML = "";
+  textIndex++
+  const askedQuestion = document.querySelector("#question-text");
+  askedQuestion.innerText = quiz_espace.questions[textIndex].text;
+  console.log("options", quiz_espace.questions[textIndex].options);
+
+  // Pour chaque option, créer un bouton et l'ajouter au conteneur
+  quiz_espace.questions[textIndex].options.forEach((option) => {
+    console.log(option);
+    const boutonOptions = document.createElement("button");
+    boutonOptions.id = option; // AJOUTER id pour identifier de façon unique le bouton sur lequel l'utilisateur à cliqué
+    boutonOptions.innerText = option;
+    boutonOptions.classList.add("boutonOptionsCSS"); // on ajoute la classe "boutonOptionsCSS" à tous les boutons "option"
+
+    choixOptions.appendChild(boutonOptions);
+    // return;
+  });
+  boutonStart.classList.add("hidden");
+  boutonSuivant.classList.remove("hidden"); // faire apparaitre le bouton "suivant"
+});
