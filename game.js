@@ -24,6 +24,7 @@ const boutonStart = document.querySelector("#start-button");
 const boutonSuivant = document.querySelector("#next-button");
 console.log(boutonSuivant);
 
+<<<<<<< HEAD
 //let correctAnswer = quiz_espace.questions.correct_answer; // pas bon
 
 let textIndex = 0; 
@@ -37,11 +38,28 @@ boutonStart.addEventListener("click", function () {
   console.log("options", quiz_espace.questions[textIndex].options);
 
 
+=======
+let correctAnswer = quiz_espace.questions.correct_answer
+
+let textIndex = 0;
+// let optionsIndex = 0;
+
+// affichage de la première question & de ses options
+boutonStart.addEventListener("click", function () {
+  const firstQuestion = document.querySelector("#question-text");
+  firstQuestion.innerText = quiz_espace.questions[textIndex].text;
+  console.log("options", quiz_espace.questions[textIndex].options);
+
+
+>>>>>>> 3734710e29db2a1e0308926184dbf4c17e167282
   // Pour chaque option, créer un bouton et l'ajouter au conteneur
   quiz_espace.questions[textIndex].options.forEach((option) => {
     console.log(option);
     const boutonOptions = document.createElement("button");
+<<<<<<< HEAD
     boutonOptions.id = option; // AJOUTER id pour identifier de façon unique le bouton sur lequel l'utilisateur à cliqué
+=======
+>>>>>>> 3734710e29db2a1e0308926184dbf4c17e167282
     boutonOptions.innerText = option;
     boutonOptions.classList.add("boutonOptionsCSS"); // on ajoute la classe "boutonOptionsCSS" à tous les boutons "option"
 
@@ -54,6 +72,7 @@ boutonStart.addEventListener("click", function () {
 });
 
 
+<<<<<<< HEAD
 choixOptions.addEventListener("click", function (event) { // EVENT AJOUTE PAR AMINE
     const buttonIdClicked = event.target.id; // Recuperer l'ID du boutton sur lequel l'utilisateur a cliqué
     const correctAnswer = quiz_espace.questions[textIndex].correct_answer; // Recuperer la reponse considerée comme correct depuis quiz_space
@@ -71,5 +90,20 @@ function checkAnswer(buttonIdClicked, correctAnswer) {
     } else {
       console.log("🐸 perdu !");
       choixOptions.classList.add(".wrong"); // c'est mis en commentaire car ça ne sert à rien 
+=======
+choixOptions.addEventListener("click", function () {
+  checkAnswer(choixOptions, correctAnswer);
+});
+
+/* Gestion réponses */
+
+function checkAnswer(choixOptions, correctAnswer) {
+    if (choixOptions === correctAnswer) {
+      console.log("🐸 gagné !", correctAnswer);
+      choixOptions.classList.add(".right");
+    } else {
+      console.log("🐸 perdu !");
+      choixOptions.classList.add(".wrong");
+>>>>>>> 3734710e29db2a1e0308926184dbf4c17e167282
     }
   }
