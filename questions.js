@@ -35,7 +35,7 @@ export const quiz_espace = {
           text: "Dans quelle galaxie se situe le système solaire ?",
           options: [
             "1. Galaxie d'Andromède",
-            "2. alaxie Samsun",
+            "2. Galaxie Samsung",
             "3. Galaxie de la roue de Chariot",
             "4. La Voie Lactée"
           ],
