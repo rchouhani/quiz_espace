@@ -27,7 +27,7 @@ console.log(boutonSuivant);
 let textIndex = 0; 
 // let optionsIndex = 0;
 
-
+//const boutonOptions = document.createElement("button");  ne sert à rien
 // affichage de la première question & de ses options
 boutonStart.addEventListener("click", function () {
   const askedQuestion = document.querySelector("#question-text");
@@ -41,7 +41,6 @@ boutonStart.addEventListener("click", function () {
     boutonOptions.id = option; // AJOUTER id pour identifier de façon unique le bouton sur lequel l'utilisateur à cliqué
     boutonOptions.innerText = option;
     boutonOptions.classList.add("boutonOptionsCSS"); // on ajoute la classe "boutonOptionsCSS" à tous les boutons "option"
-
     choixOptions.appendChild(boutonOptions);
     // return;
   });
@@ -54,29 +53,45 @@ choixOptions.addEventListener("click", function (event) { // EVENT AJOUTE PAR AM
     const buttonClicked = event.target; // recupere l'élément bouton cliqué
     const buttonIdClicked = event.target.id; // Recuperer l'ID du boutton sur lequel l'utilisateur a cliqué
     const correctAnswer = quiz_espace.questions[textIndex].correct_answer; // Recuperer la reponse considerée comme correct depuis quiz_space
+
     console.log("id du bouton cliqué : " + buttonIdClicked);
     //console.log("id du boutton sur lequel l'utilisateur a cliqué : " + event.target.id); // afficher dans la console l'id du bouton
+   
+   
     checkAnswer(buttonIdClicked, correctAnswer, buttonClicked);
-    //bouton DISABLED
+    //bouton "Suivant" DISABLED
     boutonSuivant.removeAttribute("disabled")
 });
 
 
+
 /* Gestion réponses */
+
 function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
     console.log("buttonClicked :" + buttonClicked);
     console.log("buttonIdClicked :" + buttonIdClicked);
     console.log("correctAnswer :" + correctAnswer);
+   
       if (buttonIdClicked === correctAnswer) {
         buttonClicked.style = "border: 4px solid green"
         console.log("🦄 gagné !", correctAnswer);
-       
+        //return;
       } else {
         console.log("🐸 perdu !");
         buttonClicked.style = "border: 4px solid red"
-        // buttonClicked.classList.add("wrong");
+        correctAnswer.style = "border: 4px solid green"
+       // buttonIdClicked.setAttribute("style", "background-color:red;");
       }
+      const allButtons = choixOptions.querySelectorAll("button");
+      allButtons.forEach(button =>{
+        button.disabled = true;
+      })
+      
+     
   }
+  // if(buttonClicked !== correctAnswer){
+  //   button.style = "border: 4px solid green"
+  //   }
 
 
 // FONCTION LOAD NEXT QUESTION
@@ -97,7 +112,6 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
     boutonOptions.classList.add("boutonOptionsCSS"); // on ajoute la classe "boutonOptionsCSS" à tous les boutons "option"
 
     choixOptions.appendChild(boutonOptions);
-    // return;
   });
   boutonStart.classList.add("hidden");
   boutonSuivant.classList.remove("hidden"); // faire apparaitre le bouton "suivant"
