@@ -18,11 +18,14 @@ const choixOptions = document.querySelector("#options-container");
 
 quizEspaceElement.appendChild(newParagraph);
 
+// BOUTONS //
 // bouton "Let's go!"
 const boutonStart = document.querySelector("#start-button");
 // bouton "Suivant"
 const boutonSuivant = document.querySelector("#next-button");
 console.log(boutonSuivant);
+// bouton "Rejouer"
+const boutonRejouer = document.querySelector("#replay-button");
 
 let textIndex = 0; 
 // let optionsIndex = 0;
@@ -79,15 +82,13 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
       } else {
         console.log("🐸 perdu !");
         buttonClicked.style = "border: 4px solid red"
-        correctAnswer.style = "border: 4px solid green"
+        // correctAnswer.style = "border: 4px solid green"
        // buttonIdClicked.setAttribute("style", "background-color:red;");
       }
       const allButtons = choixOptions.querySelectorAll("button");
       allButtons.forEach(button =>{
         button.disabled = true;
       })
-      
-     
   }
   // if(buttonClicked !== correctAnswer){
   //   button.style = "border: 4px solid green"
@@ -99,6 +100,17 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
   boutonSuivant.addEventListener("click", function () {
   choixOptions.innerHTML = "";
   textIndex++
+
+// Vérifier si c'est la dernière question
+    if (textIndex >= quiz_espace.questions.length) {
+      // Cacher le bouton "Suivant" et afficher le bouton "Rejouer"
+      boutonSuivant.classList.add("hidden");
+      boutonRejouer.classList.remove("hidden");
+      quizEspaceElement.innerHTML = "";
+     
+      //return; // Sortir de la fonction pour ne pas charger de nouvelle question
+}
+
   const askedQuestion = document.querySelector("#question-text");
   askedQuestion.innerText = quiz_espace.questions[textIndex].text;
   console.log("options", quiz_espace.questions[textIndex].options);
@@ -110,9 +122,15 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
     boutonOptions.id = option; // AJOUTER id pour identifier de façon unique le bouton sur lequel l'utilisateur à cliqué
     boutonOptions.innerText = option;
     boutonOptions.classList.add("boutonOptionsCSS"); // on ajoute la classe "boutonOptionsCSS" à tous les boutons "option"
-
     choixOptions.appendChild(boutonOptions);
   });
   boutonStart.classList.add("hidden");
   boutonSuivant.classList.remove("hidden"); // faire apparaitre le bouton "suivant"
 });
+
+
+// Gestion du bouton "Rejouer"
+  boutonRejouer.addEventListener("click", function () {
+    location.reload(); // Rafraîchir la page
+  });
+
