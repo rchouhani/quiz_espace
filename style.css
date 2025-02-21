@@ -45,6 +45,18 @@ h1{
     background-color:bisque;
     width: 20%;
 }
+/* Bouton "Rejouer"*/
+#replay-button{
+    margin: 20px;
+    position: center center;
+    padding : 5px;
+    font-size: 1.75em;
+    background-color:violet;
+    color:blue;
+    width: 50%;
+}
+
+
 .hidden{
 	display: none;
 }
