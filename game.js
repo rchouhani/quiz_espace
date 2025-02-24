@@ -10,13 +10,21 @@ const quizContainer = document.querySelector("#quiz-container");
 quizContainer.style.margin = "20px 50px";
 
 // questions
-const quizEspaceElement = document.querySelector("#question-text");
+const questionTexte = document.querySelector("#question-text");
 console.log("première question");
 
 // options
 const choixOptions = document.querySelector("#options-container");
 
-quizEspaceElement.appendChild(newParagraph);
+questionTexte.appendChild(newParagraph);
+
+// COMPTEURS
+let textIndex = 0; 
+let scoreIndex = 0;
+
+// score correct answer
+const scoreBonnesReponses = document.querySelector("#score-correct-answer")
+
 
 // BOUTONS //
 // bouton "Let's go!"
@@ -27,10 +35,7 @@ console.log(boutonSuivant);
 // bouton "Rejouer"
 const boutonRejouer = document.querySelector("#replay-button");
 
-let textIndex = 0; 
-// let optionsIndex = 0;
 
-//const boutonOptions = document.createElement("button");  ne sert à rien
 // affichage de la première question & de ses options
 boutonStart.addEventListener("click", function () {
   const askedQuestion = document.querySelector("#question-text");
@@ -52,10 +57,10 @@ boutonStart.addEventListener("click", function () {
 });
 
 
-choixOptions.addEventListener("click", function (event) { // EVENT AJOUTE PAR AMINE
+choixOptions.addEventListener("click", function (event) {
     const buttonClicked = event.target; // recupere l'élément bouton cliqué
-    const buttonIdClicked = event.target.id; // Recuperer l'ID du boutton sur lequel l'utilisateur a cliqué
-    const correctAnswer = quiz_espace.questions[textIndex].correct_answer; // Recuperer la reponse considerée comme correct depuis quiz_space
+    const buttonIdClicked = event.target.id; // Recuperer l'ID du bouton sur lequel l'utilisateur a cliqué
+    const correctAnswer = quiz_espace.questions[textIndex].correct_answer; // Recuperer la réponse considerée comme correct depuis quiz_space
 
     console.log("id du bouton cliqué : " + buttonIdClicked);
     //console.log("id du boutton sur lequel l'utilisateur a cliqué : " + event.target.id); // afficher dans la console l'id du bouton
@@ -66,7 +71,12 @@ choixOptions.addEventListener("click", function (event) { // EVENT AJOUTE PAR AM
     boutonSuivant.removeAttribute("disabled")
 });
 
-
+// Calcul score bonnes réponses
+function correctAnswerScore(buttonIdClicked, correctAnswer){
+  if(buttonIdClicked === correctAnswer){
+    scoreIndex++;
+  };
+};
 
 /* Gestion réponses */
 
@@ -74,10 +84,14 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
     console.log("buttonClicked :" + buttonClicked);
     console.log("buttonIdClicked :" + buttonIdClicked);
     console.log("correctAnswer :" + correctAnswer);
+    correctAnswerScore(buttonIdClicked, correctAnswer);
+    
    
       if (buttonIdClicked === correctAnswer) {
         buttonClicked.style = "border: 4px solid green"
         console.log("🦄 gagné !", correctAnswer);
+       
+        console.log("nombre de bonnes réponses :", scoreIndex);
         //return;
       } else {
         console.log("🐸 perdu !");
@@ -88,7 +102,7 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
               if (button.id === correctAnswer) {
                   button.style.border = "6px solid green";
               }
-        });
+        }); 
       }
       // Une fois une option cliquée, on désactive les autres boutons options
       const allButtons = choixOptions.querySelectorAll("button");
@@ -111,8 +125,10 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
     if (textIndex >= quiz_espace.questions.length) {
       // Cacher le bouton "Suivant" et afficher le bouton "Rejouer"
       boutonSuivant.classList.add("hidden");
+      scoreBonnesReponses.classList.remove("hidden");
+      scoreBonnesReponses.innerText = ("Nombre de bonnes réponses : " + scoreIndex + " / " + quiz_espace.questions.length);
       boutonRejouer.classList.remove("hidden");
-      quizEspaceElement.innerHTML = "";
+      questionTexte.innerHTML = "";
      
       //return; // Sortir de la fonction pour ne pas charger de nouvelle question
 }
