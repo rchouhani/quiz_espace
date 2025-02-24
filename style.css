@@ -37,6 +37,17 @@ h1{
     background-color: blue;
 }
 
+
+#score-correct-answer{
+    font-size: 2em;
+    margin : 15px;
+    padding : 8px;
+    border: 4px solid blue;
+    text-align: center;
+    background-color: aquamarine;
+}
+
+
 /* Bouton "Suivant" */
 #next-button{
     margin: 20px 0 0 10px;
