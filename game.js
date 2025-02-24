@@ -82,9 +82,15 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
       } else {
         console.log("🐸 perdu !");
         buttonClicked.style = "border: 4px solid red"
-        // correctAnswer.style = "border: 4px solid green"
-       // buttonIdClicked.setAttribute("style", "background-color:red;");
+        // j'affiche quelle était la réponse correcte
+        const allButtons = choixOptions.querySelectorAll("button");
+          allButtons.forEach(button => {
+              if (button.id === correctAnswer) {
+                  button.style.border = "6px solid green";
+              }
+        });
       }
+      // Une fois une option cliquée, on désactive les autres boutons options
       const allButtons = choixOptions.querySelectorAll("button");
       allButtons.forEach(button =>{
         button.disabled = true;
