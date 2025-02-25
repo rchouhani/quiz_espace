@@ -110,10 +110,6 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
         button.disabled = true;
       })
   }
-  // if(buttonClicked !== correctAnswer){
-  //   button.style = "border: 4px solid green"
-  //   }
-
 
 // FONCTION LOAD NEXT QUESTION
   // affichage des questions suivantes au clic du bouton "Suivant" (code copié de bouton start)
