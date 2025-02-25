@@ -46,15 +46,28 @@ h1{
     text-align: center;
     background-color: aquamarine;
 }
-
+#container-suivant-timer{
+    justify-content: space-between;
+}
 
 /* Bouton "Suivant" */
 #next-button{
+    justify-content: sp;
     margin: 20px 0 0 10px;
     padding : 2px;
     font-size: 1.25em;
     background-color:bisque;
-    width: 20%;
+    width: 100%;
+}
+#warningTimer{
+    color:lightseagreen;
+    font-size: 2em;
+    font-weight: bold;
+    font-family: "Roboto";
+    padding: 5px;
+    border: 1px solid red;
+    text-align: left;
+    width: 50%;
 }
 /* Bouton "Rejouer"*/
 #replay-button{
