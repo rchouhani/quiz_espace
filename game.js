@@ -4,9 +4,12 @@ import { quiz_espace } from "./questions.js"; // Import des questions
 const newParagraph = document.querySelector("#intro");
 newParagraph.innerText = quiz_espace.intro;
 
+
 // paragraphe pour prévenir les joueurs du temps de réponse qu'ils ont
 const timerPhrase = document.querySelector('#timerPhrase')
 timerPhrase.innerText = quiz_espace.timerPhrase
+timerPhrase.classList.remove("hidden")
+
 
 // quiz-container
 const quizContainer = document.querySelector("#quiz-container");
@@ -54,7 +57,10 @@ boutonStart.addEventListener("click", function () {
   });
   boutonStart.classList.add("hidden");
   boutonSuivant.classList.remove("hidden"); // faire apparaitre le bouton "suivant"
+  timerPhrase.classList.add("hidden") // faire disparaitre la phrase qui prévient le joueur du temps qu'il a pour répondre
+  paragraphTimer.classList.remove('hidden')
 });
+
 
 
 choixOptions.addEventListener("click", function (event) {
@@ -147,6 +153,7 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
     boutonOptions.classList.add("boutonOptionsCSS"); // on ajoute la classe "boutonOptionsCSS" à tous les boutons "option"
     choixOptions.appendChild(boutonOptions);
   });
+  
   boutonStart.classList.add("hidden");
   boutonSuivant.classList.remove("hidden"); // faire apparaitre le bouton "suivant"
   boutonSuivant.setAttribute("disabled", "") // rend inactif le bouton suivant tant que l'on n'a pas donné de réponse
@@ -154,12 +161,21 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
 });
 
 let myTimeout = setInterval(warningTime, 1000);
+const paragraphTimer = document.querySelector('#warningTimer')
 
 function warningTime() {
   console.log('ca marche au bout de 2s')
-  const paragraphTimer = document.querySelector('#warningTimer')
   paragraphTimer.innerHTML = myTimeout++
-  paragraphTimer.classList.remove('hidden')
+  
+  if(myTimeout == 5){
+    paragraphTimer.innerHTML = "Alors, une réponse"
+  }
+
+  if(myTimeout == 10){
+    paragraphTimer.innerHTML = "Trop tard"
+    clearInterval(myTimeout)
+  }
+  
 }
 
 // Gestion du bouton "Rejouer"
