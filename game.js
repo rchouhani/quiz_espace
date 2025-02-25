@@ -2,8 +2,11 @@ import { quiz_espace } from "./questions.js"; // Import des questions
 
 // Paragraphe intro
 const newParagraph = document.querySelector("#intro");
-console.log("paragraphe intro");
 newParagraph.innerText = quiz_espace.intro;
+
+// paragraphe pour prévenir les joueurs du temps de réponse qu'ils ont
+const timerPhrase = document.querySelector('#timerPhrase')
+timerPhrase.innerText = quiz_espace.timerPhrase
 
 // quiz-container
 const quizContainer = document.querySelector("#quiz-container");
@@ -11,7 +14,6 @@ quizContainer.style.margin = "20px 50px";
 
 // questions
 const questionTexte = document.querySelector("#question-text");
-console.log("première question");
 
 // options
 const choixOptions = document.querySelector("#options-container");
@@ -31,7 +33,6 @@ const message = document.querySelector('#messageJoueur')
 const boutonStart = document.querySelector("#start-button");
 // bouton "Suivant"
 const boutonSuivant = document.querySelector("#next-button");
-console.log(boutonSuivant);
 // bouton "Rejouer"
 const boutonRejouer = document.querySelector("#replay-button");
 
@@ -40,17 +41,16 @@ const boutonRejouer = document.querySelector("#replay-button");
 boutonStart.addEventListener("click", function () {
   const askedQuestion = document.querySelector("#question-text");
   askedQuestion.innerText = quiz_espace.questions[textIndex].text;
-  console.log("options", quiz_espace.questions[textIndex].options);
 
-  // Pour chaque option, créer un bouton et l'ajouter au conteneur
+  // Pour chaque option, créer un bouton et l'ajouter au conteneur (A VOIR POUR METTRE DANS UN AUTRE FICHIER)
   quiz_espace.questions[textIndex].options.forEach((option) => {
-    console.log(option);
+
     const boutonOptions = document.createElement("button");
     boutonOptions.id = option; // AJOUTER id pour identifier de façon unique le bouton sur lequel l'utilisateur à cliqué
     boutonOptions.innerText = option;
     boutonOptions.classList.add("boutonOptionsCSS"); // on ajoute la classe "boutonOptionsCSS" à tous les boutons "option"
     choixOptions.appendChild(boutonOptions);
-    // return;
+
   });
   boutonStart.classList.add("hidden");
   boutonSuivant.classList.remove("hidden"); // faire apparaitre le bouton "suivant"
@@ -62,15 +62,11 @@ choixOptions.addEventListener("click", function (event) {
     const buttonIdClicked = event.target.id; // Recuperer l'ID du bouton sur lequel l'utilisateur a cliqué
     const correctAnswer = quiz_espace.questions[textIndex].correct_answer; // Recuperer la réponse considerée comme correct depuis quiz_space
 
-    console.log("id du bouton cliqué : " + buttonIdClicked);
-    //console.log("id du boutton sur lequel l'utilisateur a cliqué : " + event.target.id); // afficher dans la console l'id du bouton
-   
-   
     checkAnswer(buttonIdClicked, correctAnswer, buttonClicked);
     //bouton "Suivant" DISABLED
     boutonSuivant.removeAttribute("disabled")
-    return
 });
+
 
 // Calcul score bonnes réponses
 function correctAnswerScore(buttonIdClicked, correctAnswer){
@@ -82,10 +78,12 @@ function correctAnswerScore(buttonIdClicked, correctAnswer){
     message.innerText = "waouh t'es nul !!!!!"
   }
   
-  if(scoreIndex > 3){
+  if(scoreIndex >= 3){
     message.innerText = "Waouh tes doué!!!§§§§"
   }
+  
 };
+
 
 /* Gestion réponses */
 
@@ -94,8 +92,7 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
     console.log("buttonIdClicked :" + buttonIdClicked);
     console.log("correctAnswer :" + correctAnswer);
     correctAnswerScore(buttonIdClicked, correctAnswer);
-    
-   
+
       if (buttonIdClicked === correctAnswer) {
         buttonClicked.style = "border: 4px solid green"
         console.log("🦄 gagné !", correctAnswer);
@@ -117,8 +114,9 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
       allButtons.forEach(button =>{
         button.disabled = true;
       })
-
 }
+
+
  
 
 // FONCTION LOAD NEXT QUESTION
@@ -143,7 +141,6 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
 
   // Pour chaque option, créer un bouton et l'ajouter au conteneur
   quiz_espace.questions[textIndex].options.forEach((option) => {
-    console.log(option);
     const boutonOptions = document.createElement("button");
     boutonOptions.id = option; // AJOUTER id pour identifier de façon unique le bouton sur lequel l'utilisateur à cliqué
     boutonOptions.innerText = option;
@@ -156,7 +153,18 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
   
 });
 
+let myTimeout = setInterval(warningTime, 1000);
+
+function warningTime() {
+  console.log('ca marche au bout de 2s')
+  const paragraphTimer = document.querySelector('#warningTimer')
+  paragraphTimer.innerHTML = myTimeout++
+  paragraphTimer.classList.remove('hidden')
+}
+
 // Gestion du bouton "Rejouer"
   boutonRejouer.addEventListener("click", function () {
     location.reload(); // Rafraîchir la page
   });
+
+  
