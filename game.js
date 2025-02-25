@@ -24,7 +24,7 @@ let scoreIndex = 0;
 
 // score correct answer
 const scoreBonnesReponses = document.querySelector("#score-correct-answer")
-
+const message = document.querySelector('#messageJoueur')
 
 // BOUTONS //
 // bouton "Let's go!"
@@ -69,6 +69,7 @@ choixOptions.addEventListener("click", function (event) {
     checkAnswer(buttonIdClicked, correctAnswer, buttonClicked);
     //bouton "Suivant" DISABLED
     boutonSuivant.removeAttribute("disabled")
+    return
 });
 
 // Calcul score bonnes réponses
@@ -76,6 +77,14 @@ function correctAnswerScore(buttonIdClicked, correctAnswer){
   if(buttonIdClicked === correctAnswer){
     scoreIndex++;
   };
+
+  if(scoreIndex <= 2){
+    message.innerText = "waouh t'es nul !!!!!"
+  }
+  
+  if(scoreIndex > 3){
+    message.innerText = "Waouh tes doué!!!§§§§"
+  }
 };
 
 /* Gestion réponses */
@@ -90,9 +99,8 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
       if (buttonIdClicked === correctAnswer) {
         buttonClicked.style = "border: 4px solid green"
         console.log("🦄 gagné !", correctAnswer);
-       
         console.log("nombre de bonnes réponses :", scoreIndex);
-        //return;
+
       } else {
         console.log("🐸 perdu !");
         buttonClicked.style = "border: 4px solid red"
@@ -109,7 +117,9 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
       allButtons.forEach(button =>{
         button.disabled = true;
       })
-  }
+
+}
+ 
 
 // FONCTION LOAD NEXT QUESTION
   // affichage des questions suivantes au clic du bouton "Suivant" (code copié de bouton start)
@@ -117,21 +127,19 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
   choixOptions.innerHTML = "";
   textIndex++
 
-// Vérifier si c'est la dernière question
+    // Vérifier si c'est la dernière question
     if (textIndex >= quiz_espace.questions.length) {
       // Cacher le bouton "Suivant" et afficher le bouton "Rejouer"
       boutonSuivant.classList.add("hidden");
       scoreBonnesReponses.classList.remove("hidden");
       scoreBonnesReponses.innerText = ("Nombre de bonnes réponses : " + scoreIndex + " / " + quiz_espace.questions.length);
+      message.classList.remove("hidden")
       boutonRejouer.classList.remove("hidden");
       questionTexte.innerHTML = "";
-     
-      //return; // Sortir de la fonction pour ne pas charger de nouvelle question
-}
-
+    }
+    
   const askedQuestion = document.querySelector("#question-text");
   askedQuestion.innerText = quiz_espace.questions[textIndex].text;
-  console.log("options", quiz_espace.questions[textIndex].options);
 
   // Pour chaque option, créer un bouton et l'ajouter au conteneur
   quiz_espace.questions[textIndex].options.forEach((option) => {
@@ -144,11 +152,11 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
   });
   boutonStart.classList.add("hidden");
   boutonSuivant.classList.remove("hidden"); // faire apparaitre le bouton "suivant"
+  boutonSuivant.setAttribute("disabled", "") // rend inactif le bouton suivant tant que l'on n'a pas donné de réponse
+  
 });
-
 
 // Gestion du bouton "Rejouer"
   boutonRejouer.addEventListener("click", function () {
     location.reload(); // Rafraîchir la page
   });
-

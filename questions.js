@@ -4,12 +4,12 @@ export const quiz_espace = {
         {
           text: "Combien de planètes y a t'il dans le système solaire ? ",
           options: [
-            "1. 6",
-            "2. 9",
-            "3. 12",
-            "4. 8"
+            "1. Six",
+            "2. Neuf",
+            "3. Douze",
+            "4. Huit"
           ],
-          correct_answer: "4. 8"
+          correct_answer: "4. Huit"
         },
         {
           text: "Quel est le satellite le plus célèbre de Jupiter ?",
@@ -37,9 +37,9 @@ export const quiz_espace = {
             "1. Galaxie d'Andromède",
             "2. Galaxie Samsung",
             "3. Galaxie de la roue de Chariot",
-            "4. La Voie Lactée"
+            "4. Galaxie La Voie Lactée"
           ],
-          correct_answer: "4. La Voie Lactée"
+          correct_answer: "4. Galaxie La Voie Lactée"
         }
       ]
     };
