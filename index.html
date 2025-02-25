@@ -13,6 +13,7 @@
 	
 	<div id="quiz-container">
 		<p id="intro"></p>
+		<p id="timerPhrase"></p>
 	  <div class="question" id="question-text">
 		<!-- La question sera injectée ici par JavaScript -->
 	  </div>
@@ -34,13 +35,15 @@
 		<button id="start-button">Let's go!</button>
 	  </div>
 	 
-	  <div class="button-container">
-		<button id="next-button" class="hidden" disabled>Suivant</button>
+	  <div class="button-container flex-row" id="container-suivant-timer">
+		<div><button id="next-button" class="hidden" disabled>Suivant</button></div>
+		<div><p id="warningTimer" class="hidden"></p></div>
 	  </div>
 
 	  <div class="button-container">
 		<button id="replay-button" class="flex-column hidden">Rejouer</button>
 	  </div>
+
 
 	</div>
 	
