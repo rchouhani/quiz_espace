@@ -41,6 +41,26 @@ export const quiz_espace = {
             "4. Galaxie La Voie Lactée"
           ],
           correct_answer: "4. Galaxie La Voie Lactée"
+        },
+        {
+          text: "Qu'est-ce qu'une constellation ?",
+          options: [
+            "1. Un groupe cosmique d'étoiles, planètes, de gaz et de poussière",
+            "2. Un groupe d'étoiles voisines",
+            "3. Un groupe de signes du Zodiaque",
+            "4. Un objet céleste composé de gaz raréfié, de plasma et de poussières interstellaires"
+          ],
+          correct_answer: "2. Un groupe d'étoiles voisines"
+        },
+        {
+          text: "Quelle était la mission d'Apollo 13 ?",
+          options: [
+            "1. Récupèrer des échantillons sur Mars",
+            "2. Rechercher des signes de vie sur Vénus",
+            "3. Faire arriver des hommes sur la Lune",
+            "4. Faire des sorties extra-véhiculaires sur la Lune"
+          ],
+          correct_answer: "3. Faire arriver des hommes sur la Lune"
         }
       ]
     };

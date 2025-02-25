@@ -6,14 +6,25 @@
 <title>Quiz Espace</title>
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
-	<h1>🚀 Vers l'infini et au-delà 🌠</h1>
+<body class="initial-background">
+	<h1>🚀 Vers l'infini et au-delà... 🪐</h1>
 	<!-- <p id="intro"></p> -->
 
 	
-	<div id="quiz-container">
-		<p id="intro"></p>
-		<p id="timerPhrase"></p>
+	<div id="quiz-container" class="fond-espace">
+
+		<p id="intro">
+			<!-- L'introduction sera injectée ici par JavaScript -->
+		</p>
+				<!-- <div id="div-intro">
+					<p id="intro">
+						!L'introduction sera injectée ici par JavaScript 
+					</p>
+				</div> -->
+		<p id="timerPhrase">
+			<!-- L'avertissement temps alloué sera injectée ici par JavaScript -->
+		</p>
+
 	  <div class="question" id="question-text">
 		<!-- La question sera injectée ici par JavaScript -->
 	  </div>
@@ -31,20 +42,28 @@
 		<!-- Affichage du message en fonction du score -->
 	  </div>
   
-	  <div class="button-container">
+	  <div class="button-container flex-column">
 		<button id="start-button">Let's go!</button>
 	  </div>
 	 
 	  <div class="button-container flex-row" id="container-suivant-timer">
 		<div><button id="next-button" class="hidden" disabled>Suivant</button></div>
-		<div><p id="warningTimer" class="hidden"></p></div>
+		<div id="warningTimerContainer"><p id="warningTimer" class="hidden">
+			<!-- Affichage du compte à rebours -->
+		</p></div>
 	  </div>
 
 	  <div class="button-container">
-		<button id="replay-button" class="flex-column hidden">Rejouer</button>
+		<button id="replay-button" class="flex-column hidden">Rejouer 💫</button>
 	  </div>
 
 
+	  <div id="progressFusee" >
+		<img src="img/FUSEE_MAUVE.png" id="fuseeprogress" class="hidden" alt="fusee-progress-bar" width="100" height="90">
+	  </div>
+	  <div id="progress-bar-container" class="flex-column hidden">
+			<div id="progress-bar"><!-- Affichage de la progression --></div>
+	  </div>
 	</div>
 	
 	<!-- Importe ici ton fichier JavaScript -->
