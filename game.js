@@ -5,10 +5,13 @@ import { quiz_espace } from "./questions.js"; // Import des questions
 const newParagraph = document.querySelector("#intro");
 newParagraph.innerText = quiz_espace.intro;
 
+
 // paragraphe pour prévenir les joueurs du temps de réponse qu'ils ont
 // const timerPhrase = document.querySelector('#timerPhrase')
 // timerPhrase.innerText = quiz_espace.timerPhrase
 // timerPhrase.classList.remove("hidden")
+timerPhrase.classList.remove("hidden")
+
 
 // quiz-container
 const quizContainer = document.querySelector("#quiz-container");
@@ -88,6 +91,7 @@ boutonStart.addEventListener("click", function () {
   paragraphTimer.classList.remove("hidden")
   let myTimeout = setInterval(warningTime, 1000);
 });
+
 
 // RECUPERATION DE L'OPTION CLIQUEE
 choixOptions.addEventListener("click", function (event) {
@@ -203,6 +207,7 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
     boutonOptions.classList.add("boutonOptionsCSS"); // on ajoute la classe "boutonOptionsCSS" à tous les boutons "option"
     choixOptions.appendChild(boutonOptions);
   });
+  
   boutonStart.classList.add("hidden");
   boutonSuivant.classList.remove("hidden"); // faire apparaitre le bouton "suivant"
   boutonSuivant.setAttribute("disabled", "") // rend inactif le bouton suivant tant que l'on n'a pas donné de réponse
