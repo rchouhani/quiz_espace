@@ -5,14 +5,6 @@ import { quiz_espace } from "./questions.js"; // Import des questions
 const newParagraph = document.querySelector("#intro");
 newParagraph.innerText = quiz_espace.intro;
 
-
-// paragraphe pour prévenir les joueurs du temps de réponse qu'ils ont
-// const timerPhrase = document.querySelector('#timerPhrase')
-// timerPhrase.innerText = quiz_espace.timerPhrase
-// timerPhrase.classList.remove("hidden")
-timerPhrase.classList.remove("hidden")
-
-
 // quiz-container
 const quizContainer = document.querySelector("#quiz-container");
 quizContainer.style.margin = "20px 50px";
@@ -26,7 +18,6 @@ questionTexte.appendChild(newParagraph);
 
 // compteur temps
 const paragraphTimer = document.querySelector('#warningTimer')
-
 
 // COMPTEURS
 let textIndex = 0; 
@@ -52,15 +43,20 @@ const boutonRejouer = document.querySelector("#replay-button");
 const boutonSuivantTimer = document.querySelector("#next-button");
 
 
-// Boutons pour Timer
+// Sélectionne tous les boutons pour mais uniquement pour que le Timer les désactive arrivé au bout du temps imparti
 let allButtonsForTimer;
 
 
 /* VARIABLES PROGRESS BAR 🚀 */
+let progressTimer = document.querySelector("#progress-bar")
+const progressBarTimer = document.querySelector("#progress-bar")
+const containerProgressBarTimer = document.querySelector("#progress-bar-container")
+let totalQuestionsTimer = quiz_espace.questions.length; // Nombre total de questions (ici : 6)
+
 const progressBar = document.querySelector("#progress-bar");
 const containerProgressBar = document.querySelector("#progress-bar-container");
 const totalQuestions = quiz_espace.questions.length; // Nombre total de questions (ici : 6)
-const fuseeProgressBar = document.querySelector("progressFusee");
+// const fuseeProgressBar = document.querySelector("progressFusee");
 
 
 // ************************************************************************************** //
@@ -95,14 +91,60 @@ boutonStart.addEventListener("click", function () {
   // askedQuestion.classList.add("question-text")
   boutonStart.classList.add("hidden");
   
-  timerPhrase.classList.add("hidden")  // faire disparaitre la phrase warning delai
   paragraphTimer.classList.remove("hidden")
 
   allButtonsForTimer = choixOptions.querySelectorAll("button"); // Initialiser ici
   myTimeout = setInterval(() => warningTime(allButtonsForTimer), 1000); // Passer allButtonsForTimer
+  
   boutonSuivant.classList.remove("hidden"); // faire apparaitre le bouton "suivant"
 });
 
+
+// FONCTION LOAD NEXT QUESTION
+  // affichage des questions suivantes au clic du bouton "Suivant" (code copié de bouton start)
+  boutonSuivant.addEventListener("click", function () {
+    choixOptions.innerHTML = "";
+    textIndex++
+  
+      // Vérifier si c'est la dernière question
+      if (textIndex >= quiz_espace.questions.length) {
+        // Cacher le bouton "Suivant" et afficher le bouton "Rejouer"
+        boutonSuivant.classList.add("hidden");
+        scoreBonnesReponses.classList.remove("hidden");
+        scoreBonnesReponses.innerText = ("Bonnes réponses : " + scoreIndex + " / " + quiz_espace.questions.length);
+        message.classList.remove("hidden")
+        boutonRejouer.classList.remove("hidden");
+        paragraphTimer.classList.add("hidden");
+        questionTexte.innerHTML = "";
+  
+        questionTexte.style.backgroundColor = "";
+        questionTexte.style.borderRadius = "";
+        questionTexte.style.borderBottom = "";
+        questionTexte.style.boxShadow = "";
+  
+         // Changer le fond d'écran
+         document.body.classList.remove("quiz-background");
+         document.body.classList.add("replay-background");
+      }
+      
+    const askedQuestion = document.querySelector("#question-text");
+    askedQuestion.innerText = quiz_espace.questions[textIndex].text;
+  
+    // Pour chaque option, créer un bouton et l'ajouter au conteneur
+    quiz_espace.questions[textIndex].options.forEach((option) => {
+      const boutonOptions = document.createElement("button");
+      boutonOptions.id = option; // AJOUTER id pour identifier de façon unique le bouton sur lequel l'utilisateur à cliqué
+      boutonOptions.innerText = option;
+      boutonOptions.classList.add("boutonOptionsCSS"); // on ajoute la classe "boutonOptionsCSS" à tous les boutons "option"
+      choixOptions.appendChild(boutonOptions);
+    });
+    
+    boutonStart.classList.add("hidden");
+    boutonSuivant.classList.remove("hidden"); // faire apparaitre le bouton "suivant"
+    boutonSuivant.setAttribute("disabled", "") // rend inactif le bouton suivant tant que l'on n'a pas donné de réponse
+    t = 0
+    myTimeout = setInterval(() => warningTime(allButtonsForTimer), 1000); // Passer allButtonsForTimer
+  });
 
 
 // RECUPERATION DE L'OPTION CLIQUEE
@@ -123,7 +165,7 @@ choixOptions.addEventListener("click", function (event) {
    // Mettre à jour la barre de progression
     const progress = ((textIndex +1) / totalQuestions) * 100;
     progressBar.style.width = progress + "%";
-    console.log("image fusee progress bar : ", fuseeProgressBar)
+    // console.log("image fusee progress bar : ", fuseeProgressBar)
     // fuseeProgressBar.classList.remove("hidden");
 });
 
@@ -140,115 +182,57 @@ function correctAnswerScore(buttonIdClicked, correctAnswer){
     message.innerText = "Pas mal, persévère ! 🤩"
   }else if (scoreIndex >= 8 && scoreIndex <= 9){
     message.innerText = "Excellent ! tu es prêt pour la prochaine expédition sur Mars !! 🥳"
-  }else if (scoreIndex === 10){
+  }else{
     message.innerText = "BRAVO ! Tu es prêt pour coloniser la Lune !! 🎉 🥳"
   }
 };
 
 
 /* Gestion réponses */
-
 function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
-    console.log("buttonClicked :" + buttonClicked);
-    console.log("buttonIdClicked :" + buttonIdClicked);
-    console.log("correctAnswer :" + correctAnswer);
     correctAnswerScore(buttonIdClicked, correctAnswer);
 
       if (buttonIdClicked === correctAnswer) {
         buttonClicked.style = "border: 4px solid green"
-        console.log("🦄 gagné !", correctAnswer);
-        console.log("nombre de bonnes réponses :", scoreIndex);
-
       } else {
-        console.log("🐸 perdu !");
         buttonClicked.style = "border: 4px solid red"
         // j'affiche quelle était la réponse correcte
-        const allButtons = choixOptions.querySelectorAll("button");
+      const allButtons = choixOptions.querySelectorAll("button");
           allButtons.forEach(button => {
             // Une fois une option cliquée, on désactive les autres boutons options
-            button.disabled = true;
+          button.disabled = true;
              // Une fois une option cliquée, on fait apparaitre la bonne réponse
-              if (button.id === correctAnswer) {
+          if (button.id === correctAnswer) {
                   button.style.border = "6px solid green";
-              }
+          }
         }); 
       }
 }
 
 
-// FONCTION LOAD NEXT QUESTION
-  // affichage des questions suivantes au clic du bouton "Suivant" (code copié de bouton start)
-  boutonSuivant.addEventListener("click", function () {
-  choixOptions.innerHTML = "";
-  textIndex++
-
-    // Vérifier si c'est la dernière question
-    if (textIndex >= quiz_espace.questions.length) {
-      // Cacher le bouton "Suivant" et afficher le bouton "Rejouer"
-      boutonSuivant.classList.add("hidden");
-      scoreBonnesReponses.classList.remove("hidden");
-      scoreBonnesReponses.innerText = ("Bonnes réponses : " + scoreIndex + " / " + quiz_espace.questions.length);
-      message.classList.remove("hidden")
-      boutonRejouer.classList.remove("hidden");
-      paragraphTimer.classList.add("hidden");
-      
-      questionTexte.innerHTML = "";
-
-      questionTexte.style.backgroundColor = "";
-      questionTexte.style.borderRadius = "";
-      questionTexte.style.borderBottom = "";
-      questionTexte.style.boxShadow = "";
-
-       // Changer le fond d'écran
-       document.body.classList.remove("quiz-background");
-       document.body.classList.add("replay-background");
-    }
-    
-  const askedQuestion = document.querySelector("#question-text");
-  askedQuestion.innerText = quiz_espace.questions[textIndex].text;
-
-  // Pour chaque option, créer un bouton et l'ajouter au conteneur
-  quiz_espace.questions[textIndex].options.forEach((option) => {
-    const boutonOptions = document.createElement("button");
-    boutonOptions.id = option; // AJOUTER id pour identifier de façon unique le bouton sur lequel l'utilisateur à cliqué
-    boutonOptions.innerText = option;
-    boutonOptions.classList.add("boutonOptionsCSS"); // on ajoute la classe "boutonOptionsCSS" à tous les boutons "option"
-    choixOptions.appendChild(boutonOptions);
-  });
-  
-  boutonStart.classList.add("hidden");
-  boutonSuivant.classList.remove("hidden"); // faire apparaitre le bouton "suivant"
-  boutonSuivant.setAttribute("disabled", "") // rend inactif le bouton suivant tant que l'on n'a pas donné de réponse
-  t = 0
-  //myTimeout = setInterval(() => warningTime(allButtonsForTimer), 1000); // Passer allButtonsForTimer
-});
-
-
- // TIMER ⏰
-//  allButtonsForTimer.forEach(button => {
-//   button.disabled = true;})
-
-
-
 function warningTime(allButtonsForTimer) {
+  const correctAnswerTimer = quiz_espace.questions[textIndex].correct_answer;
   t++
   paragraphTimer.innerHTML = t
-    if(t > 10){
+    if(t > 1){
       paragraphTimer.innerHTML = "trop tard"
       clearInterval(myTimeout);
-      boutonSuivantTimer.disabled = false;
-      // boutonSuivantTimer.setAttribute("disabled", "false") // rend inactif le bouton suivant tant que l'on n'a pas donné de réponse
-        allButtonsForTimer.forEach(button => {
+      boutonSuivantTimer.disabled = false; // Uniquement lorsque le timer est terminé
+      containerProgressBarTimer.classList.remove("hidden");  // faire apparaitre le container de la progress bar lorsque le timer est terminé
+      progressBarTimer.classList.remove("hidden");  // faire apparaitre la progress bar lorsque le timer est terminé
+      progressTimer = ((textIndex + 1) / totalQuestionsTimer) * 100 // Uniquement lorsque le timer est terminé
+      progressBarTimer.style.width = progressTimer + "%" // Uniquement lorsque le timer est terminé
+
+      allButtonsForTimer.forEach(button => {
           button.disabled = true;
-        });
-       
-      console.log("interval stopped");
+        if (button.id === correctAnswerTimer) {
+            button.style.border = "6px solid green";
+        }
+      });
     }
-  }
+}
 
 // Gestion du bouton "Rejouer"
   boutonRejouer.addEventListener("click", function () {
     location.reload(); // Rafraîchir la page
   });
-
-  
