@@ -31,7 +31,8 @@ const paragraphTimer = document.querySelector('#warningTimer')
 // COMPTEURS
 let textIndex = 0; 
 let scoreIndex = 0;
-let t = -2;
+let t = 0;
+let myTimeout; 
 
 // score correct answer
 const scoreBonnesReponses = document.querySelector("#score-correct-answer")
@@ -46,6 +47,13 @@ const boutonStart = document.querySelector("#start-button");
 const boutonSuivant = document.querySelector("#next-button");
 // bouton "Rejouer"
 const boutonRejouer = document.querySelector("#replay-button");
+
+
+const boutonSuivantTimer = document.querySelector("#next-button");
+
+
+// Boutons pour Timer
+let allButtonsForTimer;
 
 
 /* VARIABLES PROGRESS BAR 🚀 */
@@ -86,11 +94,15 @@ boutonStart.addEventListener("click", function () {
   askedQuestion.style.boxShadow = "10px 10px 25px rgb(8, 115, 229)"
   // askedQuestion.classList.add("question-text")
   boutonStart.classList.add("hidden");
-  boutonSuivant.classList.remove("hidden"); // faire apparaitre le bouton "suivant"
+  
   timerPhrase.classList.add("hidden")  // faire disparaitre la phrase warning delai
   paragraphTimer.classList.remove("hidden")
-  let myTimeout = setInterval(warningTime, 1000);
+
+  allButtonsForTimer = choixOptions.querySelectorAll("button"); // Initialiser ici
+  myTimeout = setInterval(() => warningTime(allButtonsForTimer), 1000); // Passer allButtonsForTimer
+  boutonSuivant.classList.remove("hidden"); // faire apparaitre le bouton "suivant"
 });
+
 
 
 // RECUPERATION DE L'OPTION CLIQUEE
@@ -112,7 +124,7 @@ choixOptions.addEventListener("click", function (event) {
     const progress = ((textIndex +1) / totalQuestions) * 100;
     progressBar.style.width = progress + "%";
     console.log("image fusee progress bar : ", fuseeProgressBar)
-    fuseeProgressBar.classList.remove("hidden");
+    // fuseeProgressBar.classList.remove("hidden");
 });
 
 
@@ -123,11 +135,13 @@ function correctAnswerScore(buttonIdClicked, correctAnswer){
   };
 
   if(scoreIndex <= 2){
-    message.innerText = "l'espace, c'est pas ton truc..."
+    message.innerText = "L'espace, c'est pas ton truc... 🥱"
   }else if(scoreIndex >= 3 && scoreIndex <= 7){
-    message.innerText = "pas mal, persévère !"
-  }else if (scoreIndex > 7){
-    message.innerText = "excellent ! tu es prêt pour la prochaine expédition sur Mars !!"
+    message.innerText = "Pas mal, persévère ! 🤩"
+  }else if (scoreIndex >= 8 && scoreIndex <= 9){
+    message.innerText = "Excellent ! tu es prêt pour la prochaine expédition sur Mars !! 🥳"
+  }else if (scoreIndex === 10){
+    message.innerText = "BRAVO ! Tu es prêt pour coloniser la Lune !! 🎉 🥳"
   }
 };
 
@@ -159,11 +173,6 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
               }
         }); 
       }
-      // Une fois une option cliquée, on désactive les autres boutons options
-      // const allButtons = choixOptions.querySelectorAll("button");
-      // allButtons.forEach(button =>{
-      //   button.disabled = true;
-      // })
 }
 
 
@@ -181,9 +190,8 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
       scoreBonnesReponses.innerText = ("Bonnes réponses : " + scoreIndex + " / " + quiz_espace.questions.length);
       message.classList.remove("hidden")
       boutonRejouer.classList.remove("hidden");
-          // ici on enlève les styles du container questions
-     
-
+      paragraphTimer.classList.add("hidden");
+      
       questionTexte.innerHTML = "";
 
       questionTexte.style.backgroundColor = "";
@@ -211,22 +219,32 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
   boutonStart.classList.add("hidden");
   boutonSuivant.classList.remove("hidden"); // faire apparaitre le bouton "suivant"
   boutonSuivant.setAttribute("disabled", "") // rend inactif le bouton suivant tant que l'on n'a pas donné de réponse
-  t = -2
+  t = 0
+  //myTimeout = setInterval(() => warningTime(allButtonsForTimer), 1000); // Passer allButtonsForTimer
 });
 
+
  // TIMER ⏰
+//  allButtonsForTimer.forEach(button => {
+//   button.disabled = true;})
 
 
-function warningTime() {
+
+function warningTime(allButtonsForTimer) {
   t++
-  console.log('ca marche au bout de 2s')
- 
+  paragraphTimer.innerHTML = t
+    if(t > 10){
+      paragraphTimer.innerHTML = "trop tard"
+      clearInterval(myTimeout);
+      boutonSuivantTimer.disabled = false;
+      // boutonSuivantTimer.setAttribute("disabled", "false") // rend inactif le bouton suivant tant que l'on n'a pas donné de réponse
+        allButtonsForTimer.forEach(button => {
+          button.disabled = true;
+        });
+       
+      console.log("interval stopped");
+    }
   }
-
-  if(t === 10){
-    paragraphTimer.innerHTML = "trop tard"
-  }
-
 
 // Gestion du bouton "Rejouer"
   boutonRejouer.addEventListener("click", function () {

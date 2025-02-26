@@ -71,6 +71,7 @@ h1{
     font-family: "Roboto";
     color : orange;
     font-size: 3.5em;
+    text-shadow : #a7c728;
 }
 
 .flex-row{
@@ -120,8 +121,20 @@ h1{
     font-size: 2em;
     font-weight: bold;
 }
-#warningTimer{
+/* #warningTimer{
     text-align: right;
+} */
+#warningTimer{
+    color: darkblue;
+    font-size: 2em;
+    font-weight: bold;
+    font-family: "Roboto";
+    padding: 8px;
+    border-radius: 50px;
+    border: 6px solid #a7c728;
+    background-color: violet;
+    text-align: left;
+    width: 30% auto;
 }
 
 /*  BOUTONS */
@@ -243,7 +256,7 @@ margin-top : 230px;
 }
 
 
-#warningTimer{
+/* #warningTimer{
     color:lightseagreen;
     font-size: 2em;
     font-weight: bold;
@@ -252,7 +265,7 @@ margin-top : 230px;
     border: 1px solid blue;
     text-align: left;
     width: 50%;
-}
+} */
 
 #dernierePage{
     margin: -200px;

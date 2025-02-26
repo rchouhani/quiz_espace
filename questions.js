@@ -60,6 +60,46 @@ export const quiz_espace = {
             "4. Faire des sorties extra-véhiculaires sur la Lune"
           ],
           correct_answer: "3. Faire arriver des hommes sur la Lune"
+        },
+        {
+          text: "Qu'est ce qu'une nébuleuse ?",
+          options: [
+            "1. Un nuage d'étoiles",
+            "2. Un objet céleste composé de gaz raréfié, de plasma ou de poussières interstellaire",
+            "3. Une station spatiale",
+            "4. Un bug dans un programme informatique"
+          ],
+          correct_answer: "2. Un objet céleste composé de gaz raréfié, de plasma ou de poussières interstellaire"
+        },
+        {
+          text: "D'où décollent les fusées françaises ?",
+          options: [
+            "1. De l'aéroport du Bourget",
+            "2. De Cap Canaveral",
+            "3. De Kourou en Guyane",
+            "4. De centre spatial français en Martinique"
+          ],
+          correct_answer: "3. De Kourou en Guyane"
+        },
+        {
+          text: "Qu'est ce que Spoutnik ?",
+          options: [
+            "1. La première fusée russe habitée envoyée dans l'espace",
+            "2. La capsule spatiale qui envoya le premier chat dans l'espace",
+            "3. Un gâteau russe à base de vodka et de crème au citron",
+            "4. Un programme de satellites russes"
+          ],
+          correct_answer: "4. Un programme de satellites russes"
+        },
+        {
+          text: "Quelle est la planète du système solaire la plus éloignée de la Terre ?",
+          options: [
+            "1. Neptune",
+            "2. Mars",
+            "3. Jupiter",
+            "4. Pluton"
+          ],
+          correct_answer: "1. Neptune"
         }
       ]
     };
