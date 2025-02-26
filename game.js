@@ -6,8 +6,9 @@ const newParagraph = document.querySelector("#intro");
 newParagraph.innerText = quiz_espace.intro;
 
 // paragraphe pour prévenir les joueurs du temps de réponse qu'ils ont
-const timerPhrase = document.querySelector('#timerPhrase')
-timerPhrase.innerText = quiz_espace.timerPhrase
+// const timerPhrase = document.querySelector('#timerPhrase')
+// timerPhrase.innerText = quiz_espace.timerPhrase
+// timerPhrase.classList.remove("hidden")
 
 // quiz-container
 const quizContainer = document.querySelector("#quiz-container");
@@ -20,9 +21,14 @@ const questionTexte = document.querySelector("#question-text");
 const choixOptions = document.querySelector("#options-container");
 questionTexte.appendChild(newParagraph);
 
+// compteur temps
+const paragraphTimer = document.querySelector('#warningTimer')
+
+
 // COMPTEURS
 let textIndex = 0; 
 let scoreIndex = 0;
+let t = -2;
 
 // score correct answer
 const scoreBonnesReponses = document.querySelector("#score-correct-answer")
@@ -70,8 +76,17 @@ boutonStart.addEventListener("click", function () {
     choixOptions.appendChild(boutonOptions);
 
   });
+
+  askedQuestion.style.backgroundColor = "rgba(8, 84, 159, 0.5)"
+  askedQuestion.style.borderBottom = "7px double #bae705"
+  askedQuestion.style.borderRadius = "0 15px 0 15px"
+  askedQuestion.style.boxShadow = "10px 10px 25px rgb(8, 115, 229)"
+  // askedQuestion.classList.add("question-text")
   boutonStart.classList.add("hidden");
   boutonSuivant.classList.remove("hidden"); // faire apparaitre le bouton "suivant"
+  timerPhrase.classList.add("hidden")  // faire disparaitre la phrase warning delai
+  paragraphTimer.classList.remove("hidden")
+  let myTimeout = setInterval(warningTime, 1000);
 });
 
 // RECUPERATION DE L'OPTION CLIQUEE
@@ -103,13 +118,6 @@ function correctAnswerScore(buttonIdClicked, correctAnswer){
     scoreIndex++;
   };
 
-  // if(scoreIndex <= 2){
-  //   message.innerText = "waouh t'es nul !!!!!"
-  // }
-  // if(scoreIndex >= 3){
-  //   message.innerText = "Waouh tes doué!!!"
-  // }
-  // messages au joueur selon son score
   if(scoreIndex <= 2){
     message.innerText = "l'espace, c'est pas ton truc..."
   }else if(scoreIndex >= 3 && scoreIndex <= 7){
@@ -139,16 +147,19 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
         // j'affiche quelle était la réponse correcte
         const allButtons = choixOptions.querySelectorAll("button");
           allButtons.forEach(button => {
+            // Une fois une option cliquée, on désactive les autres boutons options
+            button.disabled = true;
+             // Une fois une option cliquée, on fait apparaitre la bonne réponse
               if (button.id === correctAnswer) {
                   button.style.border = "6px solid green";
               }
         }); 
       }
       // Une fois une option cliquée, on désactive les autres boutons options
-      const allButtons = choixOptions.querySelectorAll("button");
-      allButtons.forEach(button =>{
-        button.disabled = true;
-      })
+      // const allButtons = choixOptions.querySelectorAll("button");
+      // allButtons.forEach(button =>{
+      //   button.disabled = true;
+      // })
 }
 
 
@@ -166,7 +177,16 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
       scoreBonnesReponses.innerText = ("Bonnes réponses : " + scoreIndex + " / " + quiz_espace.questions.length);
       message.classList.remove("hidden")
       boutonRejouer.classList.remove("hidden");
+          // ici on enlève les styles du container questions
+     
+
       questionTexte.innerHTML = "";
+
+      questionTexte.style.backgroundColor = "";
+      questionTexte.style.borderRadius = "";
+      questionTexte.style.borderBottom = "";
+      questionTexte.style.boxShadow = "";
+
        // Changer le fond d'écran
        document.body.classList.remove("quiz-background");
        document.body.classList.add("replay-background");
@@ -186,18 +206,22 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
   boutonStart.classList.add("hidden");
   boutonSuivant.classList.remove("hidden"); // faire apparaitre le bouton "suivant"
   boutonSuivant.setAttribute("disabled", "") // rend inactif le bouton suivant tant que l'on n'a pas donné de réponse
-  
+  t = -2
 });
 
  // TIMER ⏰
-let myTimeout = setInterval(warningTime, 1000);
+
 
 function warningTime() {
+  t++
   console.log('ca marche au bout de 2s')
-  const paragraphTimer = document.querySelector('#warningTimer')
-  paragraphTimer.innerHTML = myTimeout++
-  paragraphTimer.classList.remove('hidden')
-}
+ 
+  }
+
+  if(t === 10){
+    paragraphTimer.innerHTML = "trop tard"
+  }
+
 
 // Gestion du bouton "Rejouer"
   boutonRejouer.addEventListener("click", function () {

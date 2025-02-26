@@ -1,6 +1,5 @@
 export const quiz_espace = {
-    intro:  "Voulez-vous revoir votre culture générale sur l'espace ? Bonne nouvelle ! Avec ce quiz vous allez mettre en orbite vos connaissances sur l'espace !!🚀",
-    timerPhrase: "Chers Voyageurs Intergalactiques, vous allez participer à un Quiz où vous aurez 10 secondes pour répondre.",
+    intro:  "Voulez-vous revoir votre culture générale sur l'espace ? Bonne nouvelle ! Avec ce quiz vous allez mettre en orbite vos connaissances sur l'espace !! 🚀" + `\n`+ "Top chrono, vous avez 10 secondes par question",
       questions: [
         {
           text: "Combien de planètes y a t'il dans le système solaire ? ",

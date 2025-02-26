@@ -35,18 +35,16 @@ body.replay-background {
     background-attachment: fixed;
 }
 
-.hidden{
-	display: none;
-}
+
 
 /* div INTRO */
-#div-intro{
+#intro{
     width: 90%;
     font-family: "Roboto";
-    font-family: 2em;
-    font-size: 2em;
+    font-size: 1em;
     color : white;
     font-style: italic;
+    text-align: center;
     margin-left: 2em;
     margin-right : 2em;
     padding: 15px;
@@ -92,10 +90,10 @@ h1{
     color: antiquewhite;
     margin : 1em 2em;
     padding : 1em;
-    border-bottom: 7px double #bae705;
+    /* border-bottom: 7px double #bae705;
     background-color: rgba(8, 84, 159, 0.5);
     border-radius :0 15px 0 15px;
-    box-shadow: 10px 10px 25px rgb(8, 115, 229);
+    box-shadow: 10px 10px 25px rgb(8, 115, 229); */
     }
 .question{
     display: flex;
@@ -103,24 +101,15 @@ h1{
 }
 #score-correct-answer{
     font-family: "Roboto";
+    color: white;
     font-size: 2em;
     margin : 15px;
     padding : 8px;
-    border: 4px solid blue;
+    /* border: 4px solid blue; */
     text-align: center;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
 }
-#messageJoueur{
-    font-family: "Roboto";
-    font-size: 1.75em;
-    margin : 10px 20px;
-    color :aliceblue;
-    padding : 6px;
-    border: 4px solid blue;
-    border-radius: 10px;
-    text-align: center;
-    background-color:rgba(94, 146, 243, 0.7);
-}
+
 
 #container-suivant-timer{
     padding: 2em;
@@ -170,14 +159,14 @@ h1{
     background-color:rgba(221, 97, 221, 0.878);
     border: 8px dotted rgba(211, 220, 50);
     color:#386e11;
-    width: 40%;
-    height: 20;
+    width: 80%;
+    /* height: 20px; */
     border-radius: 15px;
     cursor: pointer;
     text-shadow: 1px 1px 5px yellow;
     box-shadow: 2px 2px 10px yellow;
     animation : pulse 1s infinite;
-}
+} 
 @keyframes pulse{
     0%{
         transform: scale(1);
@@ -187,8 +176,9 @@ h1{
     }
     100%{
         transform : scale(1);
-    }
+     }
 }
+
 
 
 /* Bouton Options */
@@ -205,6 +195,10 @@ h1{
 
 /* PROGRESS BAR */
 
+#progressFusee{
+margin-top : 230px;
+}
+
 #progress-bar-container {
     width: 80%;
     height: 50px;
@@ -213,7 +207,8 @@ h1{
     border: 3px solid greenyellow;
     box-shadow: 8px 8px -8px -8px 10px greenyellow;
     border-radius: 5px;
-    margin: 15px, 0;
+    /* margin: 15px, 0; */
+    margin-top: 200px 10px;
     /* margin-bottom: 10px; */
 }
 
@@ -224,12 +219,28 @@ h1{
     background-color: hsl(262, 39%, 49%); /* Couleur de la barre de progression */
     border-radius: 5px;
     transition: width 0.3s ease;
+    margin-top: 200px 10px;
     /* justify-content: space-between;
     position: relative; */
 }
 
 
+#messageJoueur{
+    width : 70%;
+    font-family: "Roboto";
+    font-size: 1.75em;
+    margin : 10px 20px;
+    color :aliceblue;
+    padding : 12px;
+    border: 4px solid hsl(262, 39%, 49%);
+    border-radius: 10px;
+    text-align: center;
+    background-color:rgba(94, 146, 243, 0.5);
+}
 
+.hidden{
+	display: none;
+}
 
 
 #warningTimer{
@@ -238,12 +249,15 @@ h1{
     font-weight: bold;
     font-family: "Roboto";
     padding: 5px;
-    border: 1px solid red;
+    border: 1px solid blue;
     text-align: left;
     width: 50%;
 }
 
-
+#dernierePage{
+    margin: -200px;
+    align-items: center;
+}
 
 
 
