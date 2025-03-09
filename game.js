@@ -62,16 +62,16 @@ const totalQuestions = quiz_espace.questions.length; // Nombre total de question
 // affichage de la PREMIERE QUESTION & de ses OPTIONS
 boutonStart.addEventListener("click", function () {
 
-  // Changer le fond d'écran
-  document.body.classList.remove("initial-background");
-  document.body.classList.add("quiz-background");
+    // Changer le fond d'écran
+    document.body.classList.remove("initial-background");
+    document.body.classList.add("quiz-background");
 
-  // questions
-  const askedQuestion = document.querySelector("#question-text");
-  askedQuestion.innerText = quiz_espace.questions[textIndex].text;
+    // questions
+    const askedQuestion = document.querySelector("#question-text");
+    askedQuestion.innerText = quiz_espace.questions[textIndex].text;
 
-  // Pour chaque option, créer un bouton et l'ajouter au conteneur (A VOIR POUR METTRE DANS UN AUTRE FICHIER)
-  quiz_espace.questions[textIndex].options.forEach((option) => {
+    // Pour chaque option, créer un bouton et l'ajouter au conteneur (A VOIR POUR METTRE DANS UN AUTRE FICHIER)
+    quiz_espace.questions[textIndex].options.forEach((option) => {
 
     const boutonOptions = document.createElement("button");
     boutonOptions.id = option; // AJOUTER id pour identifier de façon unique le bouton sur lequel l'utilisateur à cliqué
@@ -79,27 +79,29 @@ boutonStart.addEventListener("click", function () {
     boutonOptions.classList.add("boutonOptionsCSS"); // on ajoute la classe "boutonOptionsCSS" à tous les boutons "option"
     choixOptions.appendChild(boutonOptions);
 
-  });
+    });
 
-  askedQuestion.style.backgroundColor = "rgba(8, 84, 159, 0.5)"
-  askedQuestion.style.borderBottom = "7px double #bae705"
-  askedQuestion.style.borderRadius = "0 15px 0 15px"
-  askedQuestion.style.boxShadow = "10px 10px 25px rgb(8, 115, 229)"
-  // askedQuestion.classList.add("question-text")
-  boutonStart.classList.add("hidden");
+    askedQuestion.style.backgroundColor = "rgba(8, 84, 159, 0.5)"
+    askedQuestion.style.borderBottom = "7px double #bae705"
+    askedQuestion.style.borderRadius = "0 15px 0 15px"
+    askedQuestion.style.boxShadow = "10px 10px 25px rgb(8, 115, 229)"
+    // askedQuestion.classList.add("question-text")
+    boutonStart.classList.add("hidden");
   
-  paragraphTimer.classList.remove("hidden")
+    paragraphTimer.classList.remove("hidden")
 
-  allButtonsForTimer = choixOptions.querySelectorAll("button"); // Initialiser ici
-  myTimeout = setInterval(() => warningTime(allButtonsForTimer), 1000); // Passer allButtonsForTimer
+    allButtonsForTimer = choixOptions.querySelectorAll("button"); // Initialiser ici
+    myTimeout = setInterval(() => warningTime(allButtonsForTimer), 1000); // Passer allButtonsForTimer
   
-  boutonSuivant.classList.remove("hidden"); // faire apparaitre le bouton "suivant"
+    boutonSuivant.classList.remove("hidden"); // faire apparaitre le bouton "suivant"
 });
 
 
 // FONCTION LOAD NEXT QUESTION
   // affichage des questions suivantes au clic du bouton "Suivant" (code copié de bouton start)
-  boutonSuivant.addEventListener("click", function () {
+boutonSuivant.addEventListener("click", function () {
+    clearInterval(myTimeout)
+
     choixOptions.innerHTML = "";
     textIndex++
   
@@ -143,7 +145,7 @@ boutonStart.addEventListener("click", function () {
     t = 0
     myTimeout = setInterval(() => warningTime(allButtonsForTimer), 1000); // Passer allButtonsForTimer
     allButtonsForTimer = choixOptions.querySelectorAll("button")
-  });
+});
 
 
 // RECUPERATION DE L'OPTION CLIQUEE
