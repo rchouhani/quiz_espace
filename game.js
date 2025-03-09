@@ -1,4 +1,4 @@
-import { quiz_espace } from "./questions.js"; // Import des questions
+import { quiz_espace } from "./spaceQuestions.js"; // Import des questions
 
 /* VARIABLES CONTAINERS */
 // Paragraphe intro
