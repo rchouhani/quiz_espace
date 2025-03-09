@@ -39,13 +39,10 @@ const boutonSuivant = document.querySelector("#next-button");
 // bouton "Rejouer"
 const boutonRejouer = document.querySelector("#replay-button");
 
-
-const boutonSuivantTimer = document.querySelector("#next-button");
-
-
-// Sélectionne tous les boutons pour mais uniquement pour que le Timer les désactive arrivé au bout du temps imparti
+// Sélectionne tous les boutons, mais uniquement pour que le Timer les désactive arrivé au bout du temps imparti
 let allButtonsForTimer;
-
+// Bouton suivant uniquement pour le timer
+const boutonSuivantTimer = document.querySelector("#next-button");
 
 /* VARIABLES PROGRESS BAR 🚀 */
 let progressTimer = document.querySelector("#progress-bar")
@@ -137,6 +134,7 @@ boutonStart.addEventListener("click", function () {
       boutonOptions.innerText = option;
       boutonOptions.classList.add("boutonOptionsCSS"); // on ajoute la classe "boutonOptionsCSS" à tous les boutons "option"
       choixOptions.appendChild(boutonOptions);
+
     });
     
     boutonStart.classList.add("hidden");
@@ -144,6 +142,7 @@ boutonStart.addEventListener("click", function () {
     boutonSuivant.setAttribute("disabled", "") // rend inactif le bouton suivant tant que l'on n'a pas donné de réponse
     t = 0
     myTimeout = setInterval(() => warningTime(allButtonsForTimer), 1000); // Passer allButtonsForTimer
+    allButtonsForTimer = choixOptions.querySelectorAll("button")
   });
 
 
@@ -163,7 +162,7 @@ choixOptions.addEventListener("click", function (event) {
     progressBar.classList.remove("hidden");  // faire apparaitre la progress bar
 
    // Mettre à jour la barre de progression
-    const progress = ((textIndex +1) / totalQuestions) * 100;
+    const progress = ((textIndex + 1) / totalQuestions) * 100;
     progressBar.style.width = progress + "%";
     // console.log("image fusee progress bar : ", fuseeProgressBar)
     // fuseeProgressBar.classList.remove("hidden");
@@ -178,7 +177,7 @@ function correctAnswerScore(buttonIdClicked, correctAnswer){
 
   if(scoreIndex <= 2){
     message.innerText = "L'espace, c'est pas ton truc... 🥱"
-  }else if(scoreIndex >= 3 && scoreIndex <= 7){
+  }else if(scoreIndex >= 4 && scoreIndex <= 7){
     message.innerText = "Pas mal, persévère ! 🤩"
   }else if (scoreIndex >= 8 && scoreIndex <= 9){
     message.innerText = "Excellent ! tu es prêt pour la prochaine expédition sur Mars !! 🥳"
@@ -193,9 +192,9 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
     correctAnswerScore(buttonIdClicked, correctAnswer);
 
       if (buttonIdClicked === correctAnswer) {
-        buttonClicked.style = "border: 4px solid green"
+        buttonClicked.style = "border: 6px solid #90EE90"
       } else {
-        buttonClicked.style = "border: 4px solid red"
+        buttonClicked.style = "border: 6px solid #DC143C"
         // j'affiche quelle était la réponse correcte
       const allButtons = choixOptions.querySelectorAll("button");
           allButtons.forEach(button => {
@@ -203,7 +202,7 @@ function checkAnswer(buttonIdClicked, correctAnswer, buttonClicked) {
           button.disabled = true;
              // Une fois une option cliquée, on fait apparaitre la bonne réponse
           if (button.id === correctAnswer) {
-                  button.style.border = "6px solid green";
+                  button.style.border = "6px solid #90EE90";
           }
         }); 
       }
@@ -214,7 +213,7 @@ function warningTime(allButtonsForTimer) {
   const correctAnswerTimer = quiz_espace.questions[textIndex].correct_answer;
   t++
   paragraphTimer.innerHTML = t
-    if(t > 1){
+    if(t > 20){
       paragraphTimer.innerHTML = "trop tard"
       clearInterval(myTimeout);
       boutonSuivantTimer.disabled = false; // Uniquement lorsque le timer est terminé
@@ -226,7 +225,7 @@ function warningTime(allButtonsForTimer) {
       allButtonsForTimer.forEach(button => {
           button.disabled = true;
         if (button.id === correctAnswerTimer) {
-            button.style.border = "6px solid green";
+            button.style.border = "6px solid #90EE90";
         }
       });
     }
