@@ -1,0 +1,31 @@
+.accueil{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    width: 1000px;
+    height: 600px;
+}
+#btnQuizSoccer{
+    box-shadow: 10px 10px 5px grey;
+    border-radius: 30px;
+    width: 300px;
+    height: 150px;
+}
+#btnQuizSpace{
+    box-shadow: 10px 10px 5px grey;
+    border-radius: 30px;
+    width: 300px;
+    height: 150px;
+}
+
+body.quizSoccer-background {
+    background-image: url("../img_foot/backgroundStart.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    width: auto;
+    height: auto;
+}

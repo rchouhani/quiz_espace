@@ -4,63 +4,38 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quiz Espace</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="./styles/style.css">
 </head>
 <body class="initial-background">
 	<h1>🚀 Vers l'infini et au-delà... 🪐</h1>
-	<!-- <p id="intro"></p> -->
-
 		<div id="div-intro">
-					<p id="intro">
-						<!-- L'introduction sera injectée ici par JavaScript  -->
-					</p>
+			<p id="intro">
+			<!-- L'introduction sera injectée ici par JavaScript  -->
+			</p>
 		</div>
-	
-	<div id="quiz-container" class="fond-espace">
 
-		<!-- <p id="intro">
-			L'introduction sera injectée ici par JavaScript -->
-		<!-- </p>  -->
-				<!-- <div id="div-intro">
-					<p id="intro">
-						!L'introduction sera injectée ici par JavaScript 
-					</p>
-				</div> -->
+<div id="quiz-container" class="fond-espace">
 
-	  <div class="question" id="question-text">
+	<div class="question" id="question-text">
 		<!-- La question sera injectée ici par JavaScript -->
-	  </div>
-  
-	  
-	  <div class="options flex-column" id="options-container">
+	</div>
+  	<div class="options flex-column" id="options-container">
 		<!-- Les options seront injectées ici par JavaScript -->
-	  </div>
+	</div>
 
-	  <!-- <div class="flex-column hidden" id="score-correct-answer">
-		Le score des bonnes réponses sera injectée ici par JavaScript
-	  </div>-->
-
-	  <!-- <div class="flex-column hidden" id="messageJoueur">
-		Affichage du message en fonction du score
-	  </div> -->
-  
-
-	  <div class="button-container flex-column">
+	<div class="button-container flex-column">
 		<button id="start-button">Let's go!</button>
-	  </div>
+	</div>
 	 
-	  <div class="button-container flex-row" id="container-suivant-timer">
-		<div><button id="next-button" class="hidden" disabled>Suivant</button></div>
-		<!-- <div id="warningTimerContainer"></div> -->
-			<p id="warningTimer" class="hidden"><!-- Affichage du compte à rebours --></p>
-	  </div>
-
-	  <p id="timerPhrase" class="hidden"></p>
-
+	<div class="button-container flex-row" id="container-suivant-timer">
+		<div>
+			<button id="next-button" class="hidden" disabled>Suivant</button>
+		</div>
+		<p id="warningTimer" class="hidden"><!-- Affichage du compte à rebours --></p>
+	</div>
+    <p id="timerPhrase" class="hidden"></p>
 
 	  <!-- DIV CONTENANT SCORE, MESSAGE JOUEUR ET BOUTON REJOUER -->
-
-
 
 	 <div id="dernierePage" class="flex-column">
 		<div class="flex-column hidden" id="score-correct-answer">
@@ -68,25 +43,21 @@
 		</div>
 
 		<div class="flex-column hidden" id="messageJoueur">
-		<!-- Affichage du message en fonction du score -->
+			<!-- Affichage du message en fonction du score -->
 		</div>
 		<div class="button-container flex-column">
 			<button id="replay-button" class="hidden">Rejouer 💫</button>
 		</div>
 	</div>
 
-
-
-
-	  <div id="progressFusee" >
+	<div id="progressFusee" >
 		<img src="img/FUSEE_MAUVE.png" id="fuseeprogress" class="hidden" alt="fusee-progress-bar" width="100" height="90">
-	  </div>
-	  <div id="progress-bar-container" class="flex-column hidden">
-			<div id="progress-bar"><!-- Affichage de la progression --></div>
-	  </div>
 	</div>
-	
+	<div id="progress-bar-container" class="flex-column hidden">
+		<div id="progress-bar"><!-- Affichage de la progression --></div>
+	</div>
+</div>
 	<!-- Importe ici ton fichier JavaScript -->
-	<script type="module" src="game.js"></script>
+	<script type="module" src="./javascript/game.js"></script>
 </body>
 </html>

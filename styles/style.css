@@ -14,27 +14,26 @@ small, strike, sub, sup, tt, var,b, u, i, center, dl, dt, dd, ol, ul, li,fieldse
 /* GESTION DES 3 FONDS D'ECRAN */
 
 body.initial-background {
-    background-image: url("img/1.Background-accueil.png");
+    background-image: url("/img/1b.Background-accueil.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
 }
 body.quiz-background {
-    background-image: url("img/2c.Background-questions.png");
+    background-image: url("/img/2c.Background-questions.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
 }
 body.replay-background {
-    background-image: url("img/3.Background-finalscore&rejouer.png");
+    background-image: url("/img/3.Background-finalscore&rejouer.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
 }
-
 
 
 /* div INTRO */
@@ -91,11 +90,7 @@ h1{
     color: antiquewhite;
     margin : 1em 2em;
     padding : 1em;
-    /* border-bottom: 7px double #bae705;
-    background-color: rgba(8, 84, 159, 0.5);
-    border-radius :0 15px 0 15px;
-    box-shadow: 10px 10px 25px rgb(8, 115, 229); */
-    }
+}
 .question{
     display: flex;
     flex-direction: column;
@@ -106,11 +101,8 @@ h1{
     font-size: 2em;
     margin : 15px;
     padding : 8px;
-    /* border: 4px solid blue; */
     text-align: center;
-    /* background-color: aquamarine; */
 }
-
 
 #container-suivant-timer{
     padding: 2em;
@@ -121,9 +113,7 @@ h1{
     font-size: 2em;
     font-weight: bold;
 }
-/* #warningTimer{
-    text-align: right;
-} */
+
 #warningTimer{
     color: darkblue;
     font-size: 2em;
@@ -173,7 +163,6 @@ h1{
     border: 8px dotted rgba(211, 220, 50);
     color:#386e11;
     width: 80%;
-    /* height: 20px; */
     border-radius: 15px;
     cursor: pointer;
     text-shadow: 1px 1px 5px yellow;
@@ -191,7 +180,6 @@ h1{
         transform : scale(1);
      }
 }
-
 
 
 /* Bouton Options */
@@ -220,21 +208,16 @@ margin-top : 230px;
     border: 3px solid greenyellow;
     box-shadow: 8px 8px -8px -8px 10px greenyellow;
     border-radius: 5px;
-    /* margin: 15px, 0; */
     margin-top: 200px 10px;
-    /* margin-bottom: 10px; */
 }
 
 #progress-bar {
     width: 0%;   /* on demarre la barre à 0 puis elle s'élargira après chaque réponse */
     height: 50px;
-    /* margin: 15px, 0; */
     background-color: hsl(262, 39%, 49%); /* Couleur de la barre de progression */
     border-radius: 5px;
     transition: width 0.3s ease;
     margin-top: 200px 10px;
-    /* justify-content: space-between;
-    position: relative; */
 }
 
 
@@ -256,22 +239,7 @@ margin-top : 230px;
 }
 
 
-/* #warningTimer{
-    color:lightseagreen;
-    font-size: 2em;
-    font-weight: bold;
-    font-family: "Roboto";
-    padding: 5px;
-    border: 1px solid blue;
-    text-align: left;
-    width: 50%;
-} */
-
 #dernierePage{
     margin: -200px;
     align-items: center;
 }
-
-
-
-
